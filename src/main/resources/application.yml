@@ -1,0 +1,25 @@
+spring:
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    url: jdbc:mysql://www.ylxteach.net:3366/ylxdb?useUnicode=true&characterEncoding=utf8
+    username: Administrator
+    password: XWClassroom20202023
+  mvc:
+    format:
+      date: yyyy-MM-dd
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
+server:
+  servlet:
+    encoding:
+      charset: utf-8
+
+mybatis:
+  mapper-locations: classpath:/mybatis/mapper/*.xml, classpath:/mybatis/mapper/extend/*.xml
+
+logging:
+  level:
+    com.example.mybatisplus.mapper: debug
+file-upload-path: ./file
