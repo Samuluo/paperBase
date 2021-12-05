@@ -23,6 +23,7 @@ import java.util.List;
  * @version v1.0
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/record")
 public class RecordController {
 

@@ -21,6 +21,7 @@ import com.paper.demo.model.domain.Exam;
  * @version v1.0
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/exam")
 public class ExamController {
 

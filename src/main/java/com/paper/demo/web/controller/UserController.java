@@ -21,6 +21,7 @@ import com.paper.demo.model.domain.User;
  * @version v1.0
  */
 @Controller
+@CrossOrigin
 @RequestMapping("/user")
 public class UserController {
 
