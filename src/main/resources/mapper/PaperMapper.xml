@@ -15,5 +15,11 @@
         <result column="optionF" property="optionF" />
         <result column="answer" property="answer" />
     </resultMap>
+    
+    <select id="selectOneRandomly" resultType="com.paper.demo.model.domain.Paper">
+        select *
+        from `paper`
+        ORDER BY RAND() LIMIT 0,1
+    </select>
 
 </mapper>

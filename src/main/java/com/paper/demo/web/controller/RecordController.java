@@ -75,5 +75,16 @@ public class RecordController {
         recordService.save(record);
         return JsonResponse.success(null);
     }
+
+    /**
+     * 描述：根据用户openid获取所有记录
+     *
+     */
+    @RequestMapping(value = "/getAll", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getAll(@RequestParam(value = "openid",required = false) String id) {
+        Record  record =  recordService.getById(id);
+        return JsonResponse.success(record);
+    }
 }
 

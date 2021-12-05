@@ -13,4 +13,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface PaperService extends IService<Paper> {
 
+    Paper getOneRandomly();
 }

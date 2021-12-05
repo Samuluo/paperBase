@@ -1,5 +1,6 @@
 package com.paper.demo.web.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -9,6 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import com.paper.demo.common.JsonResponse;
 import com.paper.demo.service.PaperService;
 import com.paper.demo.model.domain.Paper;
+
+import java.sql.Wrapper;
 
 
 /**
@@ -74,6 +77,17 @@ public class PaperController {
     public JsonResponse create(Paper  paper) throws Exception {
         paperService.save(paper);
         return JsonResponse.success(null);
+    }
+
+    /**
+     * 描述:根据用户id随机获取一题
+     *
+     */
+    @RequestMapping(value = "/getOne", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getOne(@RequestParam(value = "openid",required = false) String id) {
+        Paper paper = paperService.getOneRandomly();
+        return JsonResponse.success(paper);
     }
 }
 
