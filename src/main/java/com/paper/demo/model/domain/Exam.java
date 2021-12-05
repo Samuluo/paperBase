@@ -12,7 +12,7 @@ import lombok.experimental.Accessors;
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author hjh
@@ -50,7 +50,6 @@ public class Exam extends Model<Exam> {
     private Integer recordId9;
 
     private Integer recordId10;
-
 
     @Override
     protected Serializable pkVal() {

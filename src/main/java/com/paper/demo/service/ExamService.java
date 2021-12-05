@@ -12,5 +12,5 @@ import com.baomidou.mybatisplus.extension.service.IService;
  * @since 2021-12-03
  */
 public interface ExamService extends IService<Exam> {
-
+    Exam getOneRandomly();
 }
