@@ -35,6 +35,8 @@ public class Record extends Model<Record> {
 
     private String originAnswer;
 
+    private Integer correctOrNot;
+
 
     @Override
     protected Serializable pkVal() {

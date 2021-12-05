@@ -51,6 +51,8 @@ public class Exam extends Model<Exam> {
 
     private Integer recordId10;
 
+    private Integer grade;
+
 
     @Override
     protected Serializable pkVal() {

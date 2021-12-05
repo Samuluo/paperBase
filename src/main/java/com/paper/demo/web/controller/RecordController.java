@@ -10,6 +10,8 @@ import com.paper.demo.common.JsonResponse;
 import com.paper.demo.service.RecordService;
 import com.paper.demo.model.domain.Record;
 
+import java.util.List;
+
 
 /**
  *
@@ -77,14 +79,27 @@ public class RecordController {
     }
 
     /**
+     * 描述：根据用户作答情况生成记录
+     *
+     */
+    @RequestMapping(value = "/addRecord", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse addRecord(@RequestBody Record record) {
+        record = recordService.check(record);
+        boolean save = recordService.save(record);
+        return JsonResponse.success(save);
+    }
+
+
+    /**
      * 描述：根据用户openid获取所有记录
      *
      */
     @RequestMapping(value = "/getAll", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getAll(@RequestParam(value = "openid",required = false) String id) {
-        Record  record =  recordService.getById(id);
-        return JsonResponse.success(record);
+    public JsonResponse getAll(@RequestParam(value = "openid",required = true) String userId) {
+        List<Record> recordList = recordService.getByUserId(userId);
+        return JsonResponse.success(recordList);
     }
 }
 

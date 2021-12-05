@@ -3,6 +3,8 @@ package com.paper.demo.service;
 import com.paper.demo.model.domain.Record;
 import com.baomidou.mybatisplus.extension.service.IService;
 
+import java.util.List;
+
 /**
  * <p>
  *  服务类
@@ -13,4 +15,7 @@ import com.baomidou.mybatisplus.extension.service.IService;
  */
 public interface RecordService extends IService<Record> {
 
+    List<Record> getByUserId(String userId);
+
+    Record check(Record record);
 }
