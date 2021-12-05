@@ -17,5 +17,9 @@
         <result column="record_id9" property="recordId9" />
         <result column="record_id10" property="recordId10" />
     </resultMap>
-
+    <select id="selectOneRandomly" resultType="com.paper.demo.model.domain.Paper">
+        select *
+        from `exam`
+        ORDER BY RAND() LIMIT 0,1
+    </select>
 </mapper>

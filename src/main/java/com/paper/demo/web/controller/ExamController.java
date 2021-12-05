@@ -1,5 +1,6 @@
 package com.paper.demo.web.controller;
 
+import com.paper.demo.model.domain.Paper;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -75,6 +76,28 @@ public class ExamController {
     public JsonResponse create(Exam  exam) throws Exception {
         examService.save(exam);
         return JsonResponse.success(null);
+    }
+
+    /**
+     * 描述：随机生成考试
+     *
+     */
+    @RequestMapping(value = "/getExam", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getExam(@RequestParam(value = "openid",required = false)String id)throws Exception {
+        Exam exam = examService.getOneRandomly();
+        return JsonResponse.success(exam);
+    }
+
+    /**
+     * 描述：获取考试分数
+     *
+     */
+    @RequestMapping(value = "/getScore", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse getScore(@RequestParam(value = "id")String id)throws Exception {
+        Exam exam = examService.getById(id);
+        return JsonResponse.success(exam);
     }
 }
 
