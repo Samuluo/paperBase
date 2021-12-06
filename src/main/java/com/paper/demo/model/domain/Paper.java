@@ -52,7 +52,11 @@ public class Paper extends Model<Paper> {
     @TableField("optionF")
     private String optionF;
 
+    @TableField("answer")
     private String answer;
+
+    @TableField("score")
+    private Integer score;
 
 
     @Override

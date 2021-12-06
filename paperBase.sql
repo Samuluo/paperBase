@@ -14,5 +14,6 @@ create table paper
     optionD varchar(256) null,
     optionE varchar(256) null,
     optionF varchar(256) null,
-    answer  varchar(6)   null
+    answer  varchar(6)   null,
+    score   int          null
 );
