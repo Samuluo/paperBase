@@ -1,6 +1,6 @@
 package com.paper.demo.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import java.util.List;
 import com.paper.demo.model.domain.Paper;
 import com.paper.demo.mapper.PaperMapper;
 import com.paper.demo.service.PaperService;
@@ -25,5 +25,10 @@ public class PaperServiceImpl extends ServiceImpl<PaperMapper, Paper> implements
     @Override
     public Paper getOneRandomly() {
         return paperMapper.selectOneRandomly();
+    }
+
+    @Override
+    public List<Paper> getExam() {
+        return paperMapper.getExam();
     }
 }

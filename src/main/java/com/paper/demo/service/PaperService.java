@@ -2,6 +2,7 @@ package com.paper.demo.service;
 
 import com.paper.demo.model.domain.Paper;
 import com.baomidou.mybatisplus.extension.service.IService;
+import java.util.List;
 
 /**
  * <p>
@@ -14,4 +15,6 @@ import com.baomidou.mybatisplus.extension.service.IService;
 public interface PaperService extends IService<Paper> {
 
     Paper getOneRandomly();
+
+    List<Paper> getExam();
 }

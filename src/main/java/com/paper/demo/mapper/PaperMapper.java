@@ -2,6 +2,8 @@ package com.paper.demo.mapper;
 
 import com.paper.demo.model.domain.Paper;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+
+import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
@@ -16,4 +18,6 @@ import org.apache.ibatis.annotations.Mapper;
 public interface PaperMapper extends BaseMapper<Paper> {
 
     Paper selectOneRandomly();
+
+    List<Paper> getExam();
 }

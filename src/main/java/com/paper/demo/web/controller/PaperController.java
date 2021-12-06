@@ -1,5 +1,6 @@
 package com.paper.demo.web.controller;
 
+import java.util.List;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -30,52 +31,6 @@ public class PaperController {
     @Autowired
     private PaperService paperService;
 
-    /**
-    * 描述：根据Id 查询
-    *
-    */
-    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    @ResponseBody
-    public JsonResponse getById(@PathVariable("id") Long id)throws Exception {
-        Paper  paper =  paperService.getById(id);
-        return JsonResponse.success(paper);
-    }
-
-    /**
-    * 描述：根据Id删除
-    *
-    */
-    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    @ResponseBody
-    public JsonResponse deleteById(@PathVariable("id") Long id) throws Exception {
-        paperService.removeById(id);
-        return JsonResponse.success(null);
-    }
-
-
-    /**
-    * 描述：根据Id 更新
-    *
-    */
-    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
-    @ResponseBody
-    public JsonResponse updatePaper(@PathVariable("id") Integer  id,Paper  paper) throws Exception {
-        paper.setId(id);
-        paperService.updateById(paper);
-        return JsonResponse.success(null);
-    }
-
-
-    /**
-    * 描述:创建Paper
-    *
-    */
-    @RequestMapping(value = "", method = RequestMethod.POST)
-    @ResponseBody
-    public JsonResponse create(Paper  paper) throws Exception {
-        paperService.save(paper);
-        return JsonResponse.success(null);
-    }
 
     /**
      * 描述:根据题目id获取题目
@@ -89,7 +44,7 @@ public class PaperController {
     }
 
     /**
-     * 描述:根据用户id随机获取一题
+     * 描述:随机获取一题
      *
      */
     @RequestMapping(value = "/getOne", method = RequestMethod.GET)
@@ -98,5 +53,17 @@ public class PaperController {
         Paper paper = paperService.getOneRandomly();
         return JsonResponse.success(paper);
     }
+
+    /**
+     * 描述:考试，随机获取十题
+     *
+     */
+    @RequestMapping(value = "/getExam", method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getExam(@RequestParam(value = "openid",required = false) String userId) {
+        List<Paper> paperList = paperService.getExam();
+        return JsonResponse.success(paperList);
+    }
+
 }
 

@@ -22,4 +22,10 @@
         ORDER BY RAND() LIMIT 0,1
     </select>
 
+    <select id="getExam" resultType="com.paper.demo.model.domain.Paper">
+        select *
+        from `paper`
+        ORDER BY RAND() LIMIT 0,10
+    </select>
+
 </mapper>
