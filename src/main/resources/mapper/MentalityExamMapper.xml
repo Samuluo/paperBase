@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.paper.demo.mapper.MentalityExamMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.paper.demo.model.domain.MentalityExam">
+        <id column="id" property="id" />
+        <result column="section1" property="section1" />
+        <result column="section2" property="section2" />
+        <result column="section3" property="section3" />
+        <result column="section4" property="section4" />
+        <result column="section5" property="section5" />
+        <result column="creator" property="creator" />
+    </resultMap>
+
+</mapper>

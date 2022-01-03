@@ -22,8 +22,8 @@ import lombok.experimental.Accessors;
 @Data
 @EqualsAndHashCode(callSuper = false)
 @Accessors(chain = true)
-@ApiModel(value="Paper对象", description="")
-public class Paper extends Model<Paper> {
+@ApiModel(value="MentalityPaper对象", description="")
+public class MentalityPaper extends Model<MentalityPaper> {
 
     private static final long serialVersionUID = 1L;
 
@@ -31,6 +31,8 @@ public class Paper extends Model<Paper> {
     private Integer id;
 
     private String type;
+
+    private String examId;
 
     private String content;
 

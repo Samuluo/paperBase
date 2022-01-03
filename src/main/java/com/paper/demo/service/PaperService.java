@@ -2,7 +2,7 @@ package com.paper.demo.service;
 
 import com.paper.demo.model.domain.Paper;
 import com.baomidou.mybatisplus.extension.service.IService;
-import java.util.List;
+import org.springframework.stereotype.Service;
 
 /**
  * <p>
@@ -10,11 +10,8 @@ import java.util.List;
  * </p>
  *
  * @author hjh
- * @since 2021-12-03
+ * @since 2022-01-02
  */
 public interface PaperService extends IService<Paper> {
 
-    Paper getOneRandomly();
-
-    List<Paper> getExam();
 }

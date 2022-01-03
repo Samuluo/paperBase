@@ -1,6 +1,8 @@
 package com.paper.demo.web.controller;
 
-import java.util.List;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -11,6 +13,8 @@ import com.paper.demo.common.JsonResponse;
 import com.paper.demo.service.PaperService;
 import com.paper.demo.model.domain.Paper;
 
+import javax.xml.transform.Result;
+
 
 /**
  *
@@ -18,11 +22,10 @@ import com.paper.demo.model.domain.Paper;
  *
  *
  * @author hjh
- * @since 2021-12-03
+ * @since 2022-01-02
  * @version v1.0
  */
 @Controller
-@CrossOrigin
 @RequestMapping("/paper")
 public class PaperController {
 
@@ -31,39 +34,63 @@ public class PaperController {
     @Autowired
     private PaperService paperService;
 
-
     /**
-     * 描述:根据题目id获取题目
-     *
-     */
-    @RequestMapping(value = "/get", method = RequestMethod.GET)
+    * 描述：根据Id 查询
+    *
+    */
+    @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse get(@RequestParam(value = "paperId",required = true) String paperId) {
-        Paper paper = paperService.getById(paperId);
+    public JsonResponse getById(@PathVariable("id") Long id)throws Exception {
+        Paper  paper =  paperService.getById(id);
         return JsonResponse.success(paper);
     }
 
     /**
-     * 描述:随机获取一题
-     *
-     */
-    @RequestMapping(value = "/getOne", method = RequestMethod.GET)
+    * 描述：根据Id删除
+    *
+    */
+    @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public JsonResponse getOne(@RequestParam(value = "openid",required = false) String userId) {
-        Paper paper = paperService.getOneRandomly();
-        return JsonResponse.success(paper);
+    public JsonResponse deleteById(@PathVariable("id") Long id) throws Exception {
+        paperService.removeById(id);
+        return JsonResponse.success(null);
+    }
+
+
+    /**
+    * 描述：根据Id 更新
+    *
+    */
+    @RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+    @ResponseBody
+    public JsonResponse updatePaper(@PathVariable("id") Integer  id,Paper  paper) throws Exception {
+        paper.setId(id);
+        paperService.updateById(paper);
+        return JsonResponse.success(null);
+    }
+
+
+    /**
+    * 描述:创建Paper
+    *
+    */
+    @RequestMapping(value = "", method = RequestMethod.POST)
+    @ResponseBody
+    public JsonResponse create(Paper  paper) throws Exception {
+        paperService.save(paper);
+        return JsonResponse.success(null);
     }
 
     /**
-     * 描述:考试，随机获取十题
-     *
+     * 获取所有练习并分页
      */
-    @RequestMapping(value = "/getExam", method = RequestMethod.GET)
+    @RequestMapping(value = "/getPractice",method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getExam(@RequestParam(value = "openid",required = false) String userId) {
-        List<Paper> paperList = paperService.getExam();
-        return JsonResponse.success(paperList);
-    }
+    public JsonResponse list(@RequestParam(defaultValue = "1") Integer currentPage) {
+        Page page = new Page(currentPage,600);
+        IPage pagedata = paperService.page(page,new QueryWrapper<Paper>().orderByAsc("id"));
 
+        return JsonResponse.success(pagedata);
+    }
 }
 

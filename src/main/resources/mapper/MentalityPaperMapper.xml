@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.paper.demo.mapper.PaperMapper">
+<mapper namespace="com.paper.demo.mapper.MentalityPaperMapper">
 
     <!-- 通用查询映射结果 -->
-    <resultMap id="BaseResultMap" type="com.paper.demo.model.domain.Paper">
+    <resultMap id="BaseResultMap" type="com.paper.demo.model.domain.MentalityPaper">
         <id column="id" property="id" />
         <result column="type" property="type" />
+        <result column="exam_id" property="examId" />
         <result column="content" property="content" />
         <result column="optionA" property="optionA" />
         <result column="optionB" property="optionB" />
