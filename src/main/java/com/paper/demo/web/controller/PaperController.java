@@ -13,8 +13,6 @@ import com.paper.demo.common.JsonResponse;
 import com.paper.demo.service.PaperService;
 import com.paper.demo.model.domain.Paper;
 
-import javax.xml.transform.Result;
-
 
 /**
  *
@@ -40,7 +38,7 @@ public class PaperController {
     */
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
     @ResponseBody
-    public JsonResponse getById(@PathVariable("id") Long id)throws Exception {
+    public JsonResponse getById(@PathVariable("id") Integer id)throws Exception {
         Paper  paper =  paperService.getById(id);
         return JsonResponse.success(paper);
     }
@@ -92,5 +90,15 @@ public class PaperController {
 
         return JsonResponse.success(pagedata);
     }
-}
 
+    /**
+     * 随机获取一道练习
+     */
+    @RequestMapping(value = "/getOne",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse random() {
+        Integer x = 1+(int)(Math.random()*400);
+//        Paper paper = paperService.getById(x);
+        return JsonResponse.success(x);
+    }
+}

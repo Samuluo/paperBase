@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.paper.demo.model.domain.MentalityPaper;
 import com.paper.demo.model.domain.Paper;
 import com.paper.demo.service.MentalityPaperService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.stereotype.Controller;
 import org.slf4j.Logger;
@@ -92,6 +93,68 @@ public class MentalityExamController {
     public JsonResponse getExam(@PathVariable("id") String id)throws Exception {
         List<MentalityPaper> examList = mentalityPaperService.list(new QueryWrapper<MentalityPaper>().eq("exam_id", id));
         return JsonResponse.success(examList);
+    }
+
+
+    /**
+     * 用考试分数获取结果分析
+     * */
+    @RequestMapping(value = "/getScore/{id}/{score}",method = RequestMethod.GET)
+    @ResponseBody
+    public JsonResponse getScore(@PathVariable("score") Integer score,@PathVariable("id") Integer id) {
+        String str = "";
+        if(id==1) {
+            if(score>=0&&score<=4) {
+                str = mentalityExamService.getById(id).getSection1();
+            }
+            if(score>=5&&score<=10) {
+                str = mentalityExamService.getById(id).getSection2();
+            }
+            if(score>=11&&score<=20) {
+                str = mentalityExamService.getById(id).getSection3();
+            }
+            if(score>=21&&score<=30) {
+                str = mentalityExamService.getById(id).getSection4();
+            }
+            if(score>=31&&score<=45) {
+                str = mentalityExamService.getById(id).getSection5();
+            }
+        }
+        if(id==2) {
+            if(score>=0&&score<=10) {
+                str = mentalityExamService.getById(id).getSection1();
+            }
+            if(score>=11&&score<=16) {
+                str = mentalityExamService.getById(id).getSection2();
+            }
+            if(score>=17&&score<=20) {
+                str = mentalityExamService.getById(id).getSection3();
+            }
+            if(score>=21&&score<=30) {
+                str = mentalityExamService.getById(id).getSection4();
+            }
+            if(score>=31) {
+                str = mentalityExamService.getById(id).getSection5();
+            }
+        }
+        if(id==3) {
+            if(score>=0&&score<=10) {
+                str = mentalityExamService.getById(id).getSection1();
+            }
+            if(score>=11&&score<=16) {
+                str = mentalityExamService.getById(id).getSection2();
+            }
+            if(score>=17&&score<=20) {
+                str = mentalityExamService.getById(id).getSection3();
+            }
+            if(score>=21&&score<=30) {
+                str = mentalityExamService.getById(id).getSection4();
+            }
+            if(score>=31) {
+                str = mentalityExamService.getById(id).getSection5();
+            }
+        }
+        return JsonResponse.success(str);
     }
 }
 
