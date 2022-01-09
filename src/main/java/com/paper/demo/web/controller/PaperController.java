@@ -97,8 +97,8 @@ public class PaperController {
     @RequestMapping(value = "/getOne",method = RequestMethod.GET)
     @ResponseBody
     public JsonResponse random() {
-        Integer x = 1+(int)(Math.random()*400);
-//        Paper paper = paperService.getById(x);
-        return JsonResponse.success(x);
+        //Integer x = 1+(int)(Math.random()*400);
+        Paper paper = paperService.getOneRandomly();
+        return JsonResponse.success(paper);
     }
 }

@@ -17,5 +17,9 @@
         <result column="score" property="score" />
         <result column="creator" property="creator" />
     </resultMap>
-
+    <select id="selectOneRandomly" resultType="com.paper.demo.model.domain.Paper">
+        select *
+        from `paper`
+        ORDER BY RAND() LIMIT 0,1
+    </select>
 </mapper>
